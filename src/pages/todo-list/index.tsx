@@ -4,6 +4,8 @@ import { Layout, Row, Col, Typography, Spin, Empty } from "antd"; // ~ "shared/u
 
 import styles from "./styles.module.css";
 
+import { InputTodoForm } from "features/add-todo";
+
 
 export const TodoListPage: React.FC = () => {
     return (
@@ -20,6 +22,7 @@ export const TodoListPage: React.FC = () => {
             <Layout.Content className={styles.content}>
                 <Row gutter={[0, 20]} justify="center">
                 {/* <PageContent /> */}
+                    <InputTodoForm/>
                 </Row>
             </Layout.Content>
         </Layout>
