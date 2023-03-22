@@ -26,18 +26,22 @@ sample({
 todoModel.$todos
     // когда срабатывает событие insertTodoEvent, todos - текущее состояние стора, newTodoText - данные из события insertTodoEvent
     .on(insertTodoEvent, (todos, newTodoText) => {
+        const id = Object.values(todos).length + 1
         const newTodo: Todo = {
             title: newTodoText,
-            id: todos.length + 1,
+            id,
             completed: false
         }
 
         // добавляем новое туду в стор
-        return [...todos, newTodo];
+        const result = {...todos};
+        result[id] = newTodo;
+
+        return result;
     })
 
 // // сайд эффект для логирования
-const logTodosFx = createEffect((todos: Todo[]) => {
+const logTodosFx = createEffect((todos: todoModel.todoStoreType) => {
     console.log('todos store state', todos);
 })
 
@@ -51,3 +55,4 @@ export const events = {
     changeInputEvent,
     submitFormEvent,
 }
+

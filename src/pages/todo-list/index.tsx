@@ -8,6 +8,8 @@ import {
 import styles from "./styles.module.css";
 
 import { InputTodoForm } from "features/add-todo";
+import { CompleteCheckbox } from "features/toggle-todo";
+
 import { TodoRow, todoModel } from "entities/todo";
 
 export const TodoListPage: React.FC = () => {
@@ -28,8 +30,10 @@ export const TodoListPage: React.FC = () => {
                 {/* <PageContent /> */}
                     <InputTodoForm/>
                     {
-                        todos.map((todo) => (
-                            <TodoRow key={todo.id} id={todo.id} title={todo.title} completed={todo.completed}></TodoRow>
+                        Object.values(todos).map((todo) => (
+                            <TodoRow key={todo.id} id={todo.id} title={todo.title} completed={todo.completed}>
+                                <CompleteCheckbox todoId={todo.id} completed={todo.completed}/>
+                            </TodoRow>
                         ))
                     }
                 </Row>

@@ -1,2 +1,2 @@
 export * from './ui';
-export * as AddTodoModel from './model';
+export * as addTodoModel from './model';
