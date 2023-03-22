@@ -1,13 +1,17 @@
 import React from "react";
-
-import { Layout, Row, Col, Typography, Spin, Empty } from "antd"; // ~ "shared/ui/{...}"
-
+import { useStore } from 'effector-react'
+import {
+    Layout,
+    Row,
+    Typography,
+} from "antd";
 import styles from "./styles.module.css";
 
 import { InputTodoForm } from "features/add-todo";
-
+import { TodoRow, todoModel } from "entities/todo";
 
 export const TodoListPage: React.FC = () => {
+    const todos = useStore(todoModel.$todos);
     return (
         <Layout className={styles.root}>
             <Layout className={styles.toolbar}>
@@ -23,6 +27,11 @@ export const TodoListPage: React.FC = () => {
                 <Row gutter={[0, 20]} justify="center">
                 {/* <PageContent /> */}
                     <InputTodoForm/>
+                    {
+                        todos.map((todo) => (
+                            <TodoRow key={todo.id} id={todo.id} title={todo.title} completed={todo.completed}></TodoRow>
+                        ))
+                    }
                 </Row>
             </Layout.Content>
         </Layout>

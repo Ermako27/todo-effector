@@ -1,1 +1,2 @@
-export * as todoModel from "./model";
+export * from './ui';
+export * as todoModel from './model';
